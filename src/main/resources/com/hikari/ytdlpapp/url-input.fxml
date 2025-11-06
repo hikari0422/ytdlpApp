@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<HBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.hikari.ytdlpapp.lib.GetVideoFormat" fx:id="urlInputPane">
+    <Label text="輸入 URL: "/>
+    <TextField fx:id="urlField" promptText="貼上 YouTube URL" HBox.hgrow="ALWAYS"/>
+    <Button text="搜尋" onAction="#StartGetVideoFormat"/>
+</HBox>

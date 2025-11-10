@@ -16,6 +16,7 @@ import java.util.Set;
 public class GetVideoFormat {
     private final ProcessBuilder pb = new ProcessBuilder();
     private final Gson gson = new Gson();
+    private static String VidUrl;
 
     public void startGetVideoFormat(String videoUrl, ComboBox<String> formatComboBox) {
         if (videoUrl == null || videoUrl.trim().isEmpty()) {
@@ -26,6 +27,7 @@ public class GetVideoFormat {
         Task<List<String>> task = new Task<>() {
             @Override
             protected List<String> call() throws Exception {
+                VidUrl = videoUrl;
                 pb.command("yt-dlp", "--dump-json", videoUrl.trim());
                 Process process = pb.start();
 
@@ -89,5 +91,9 @@ public class GetVideoFormat {
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
+    }
+
+    public static String GetVidUrl() {
+        return VidUrl;
     }
 }

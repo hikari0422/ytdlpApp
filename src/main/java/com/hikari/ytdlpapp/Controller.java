@@ -1,14 +1,11 @@
 package com.hikari.ytdlpapp;
 
 import com.hikari.ytdlpapp.lib.GetVideoFormat;
+import com.hikari.ytdlpapp.lib.VideoDownload;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -24,6 +21,25 @@ public class Controller implements Initializable {
     private ComboBox<String> formatComboBox;
 
     private TextArea logArea;
+
+// options arguments####################
+    @FXML
+    private CheckBox embedThumbnail;
+
+    @FXML
+    private CheckBox addMetadata;
+
+    @FXML
+    private void handleCheckBox(ActionEvent event) {
+        CheckBox cb = (CheckBox) event.getSource();
+        String arg = cb.getText();
+        if (cb.isSelected()) {
+            VideoDownload.AddArgs(arg);
+        } else {
+            VideoDownload.RemoveArgs(arg);
+        }
+    }
+//######################################
 
     @FXML
     private HBox urlInput;

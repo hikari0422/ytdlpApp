@@ -9,5 +9,6 @@
     </padding>
     <fx:include fx:id="urlInput" source="url-input.fxml" />
     <fx:include fx:id="formatSelector" source="format-selector.fxml" />
+    <fx:include source="options-arguments.fxml" />
     <fx:include fx:id="downloadPanel" source="download-panel.fxml" />
 </VBox>

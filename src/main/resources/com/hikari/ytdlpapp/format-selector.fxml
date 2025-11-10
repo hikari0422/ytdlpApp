@@ -13,5 +13,5 @@
               promptText="請先搜尋影片以載入格式列表"
               prefWidth="400"
               disable="true"/>
-    <Label fx:id="formatInfoLabel" text="" style="-fx-text-fill: gray; -fx-font-size: 11px;" wrapText="true"/>
+    <Label fx:id="formatInfoLabel" style="-fx-text-fill: gray; -fx-font-size: 11px;" wrapText="true"/>
 </VBox>

@@ -1,13 +1,15 @@
 package com.hikari.ytdlpapp;
 
+import com.hikari.ytdlpapp.lib.GetVideoFormat;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -17,31 +19,43 @@ public class Controller implements Initializable {
     @FXML
     private Label welcomeText;
 
-    @FXML
     private TextField urlField;
 
-    @FXML
     private ComboBox<String> formatComboBox;
+
+    private TextArea logArea;
+
+    @FXML
+    private HBox urlInput;
 
     @FXML
     private VBox downloadPanel;
 
     @FXML
-    private ProgressBar progressBar;
+    private VBox formatSelector;
 
-    @FXML
-    private TextArea logArea;
+    private Button getFormatsButton;
 
-    @FXML
-    protected void onDownloadButtonClick() {
-        // TODO: Implement download logic using yt-dlp
-        logArea.appendText("開始下載...\n");
-        // Example: Call GetVideoFormat or integrate yt-dlp here
-    }
+    private final GetVideoFormat getVideoFormat = new GetVideoFormat();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Button downloadButton = (Button) downloadPanel.lookup("#downloadButton");
-        downloadButton.setOnAction(e -> onDownloadButtonClick());
+        getFormatsButton = (Button) urlInput.lookup("#getFormatsButton");
+        logArea = (TextArea) downloadPanel.lookup("#logArea");
+        formatComboBox = (ComboBox<String>) formatSelector.lookup("#formatComboBox");
+        urlField = (TextField) urlInput.lookup("#urlField");
+        getFormatsButton.setOnAction(this::onGetFormatsButtonClick);
+    }
+
+    protected void onGetFormatsButtonClick(ActionEvent event) {
+        logArea.appendText("正在取得影片格式...\n");
+        formatComboBox.setDisable(true);
+        getVideoFormat.startGetVideoFormat(urlField.getText(), formatComboBox);
+    }
+
+    @FXML
+    protected void onDownloadButtonClick() {
+        logArea.clear();
+        logArea.appendText("開始下載...\n");
     }
 }

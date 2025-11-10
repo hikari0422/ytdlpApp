@@ -16,7 +16,7 @@ public class VideoDownload {
         VidDLArgs.remove(args);
     }
 
-    void GetDownloadArgs() {
+    static void GetDownloadArgs() {
         VidDLArgs.addFirst("yt-dlp");
         VidDLArgs.add("--output");
         VidDLArgs.add("%(title)s.%(ext)s");
@@ -24,11 +24,10 @@ public class VideoDownload {
         VidDLArgs.add("mp4");
 
         VidDLArgs.addLast(GetVideoFormat.GetVidUrl());
-        //return String.join(" ", VidDLArgs);
     }
 
     @FXML
-    void StartDownloadVid() {
+    public static void StartDownloadVid() {
         GetDownloadArgs();
         ProcessBuilder pb = new ProcessBuilder();
         pb.command(VidDLArgs);

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:id="optionsArgumentsPanel" fx:controller="com.hikari.ytdlpapp.Controller" spacing="10">
-    <CheckBox fx:id="embedThumbnail" text="--embed-thumbnail" onAction="#handleCheckBox" />
-    <CheckBox fx:id="addMetadata" text="--add-metadata" onAction="#handleCheckBox" />
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:id="optionsArgumentsPanel"
+      spacing="10">
+    <CheckBox fx:id="embedThumbnail" text="--embed-thumbnail" />
+    <CheckBox fx:id="addMetadata" text="--add-metadata" />
 </HBox>

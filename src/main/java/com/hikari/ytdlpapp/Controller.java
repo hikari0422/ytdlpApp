@@ -30,7 +30,7 @@ public class Controller implements Initializable {
     private CheckBox addMetadata;
 
     @FXML
-    private void handleCheckBox(ActionEvent event) {
+    public void handleCheckBox(ActionEvent event) {
         CheckBox cb = (CheckBox) event.getSource();
         String arg = cb.getText();
         if (cb.isSelected()) {
@@ -54,6 +54,9 @@ public class Controller implements Initializable {
 
     private final GetVideoFormat getVideoFormat = new GetVideoFormat();
 
+    @FXML
+    private HBox optionsArgumentsPanel;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         getFormatsButton = (Button) urlInput.lookup("#getFormatsButton");
@@ -61,6 +64,16 @@ public class Controller implements Initializable {
         formatComboBox = (ComboBox<String>) formatSelector.lookup("#formatComboBox");
         urlField = (TextField) urlInput.lookup("#urlField");
         getFormatsButton.setOnAction(this::onGetFormatsButtonClick);
+        embedThumbnail = (CheckBox) optionsArgumentsPanel.lookup("#embedThumbnail");
+        addMetadata = (CheckBox) optionsArgumentsPanel.lookup("#addMetadata");
+
+        embedThumbnail.setOnAction(this::handleCheckBox);
+        addMetadata.setOnAction(this::handleCheckBox);
+
+        getFormatsButton.setOnAction(this::onGetFormatsButtonClick);
+        Button downloadButton = (Button) downloadPanel.lookup("#downloadButton");
+        downloadButton.setOnAction(event -> onDownloadButtonClick());
+
     }
 
     protected void onGetFormatsButtonClick(ActionEvent event) {
@@ -70,8 +83,9 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    protected void onDownloadButtonClick() {
+    public void onDownloadButtonClick() {
         logArea.clear();
         logArea.appendText("開始下載...\n");
+        VideoDownload.StartDownloadVid();
     }
 }

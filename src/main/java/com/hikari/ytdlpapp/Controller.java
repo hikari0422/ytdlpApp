@@ -33,11 +33,6 @@ public class Controller implements Initializable {
     private TextArea logArea;
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
-
-    @FXML
     protected void onDownloadButtonClick() {
         // TODO: Implement download logic using yt-dlp
         logArea.appendText("開始下載...\n");
